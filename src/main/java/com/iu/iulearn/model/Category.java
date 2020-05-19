@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -22,6 +24,8 @@ public class Category {
 
 //    private String icon;
 
+    @OneToMany(targetEntity = Course.class, mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Course> courses = new ArrayList<>();
 
     public Category(String title) {
         this.title = title;
