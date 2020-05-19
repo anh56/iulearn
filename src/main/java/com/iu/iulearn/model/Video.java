@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "videos")
@@ -45,9 +44,5 @@ public class Video {
     }
 
     public Video() {
-    }
-
-    public int getId() {
-        return id;
     }
 }

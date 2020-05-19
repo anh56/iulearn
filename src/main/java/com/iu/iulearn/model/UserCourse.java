@@ -36,8 +36,4 @@ public class UserCourse {
 
     public UserCourse() {
     }
-
-    public User getUser() {
-        return user;
-    }
 }

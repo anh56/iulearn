@@ -2,10 +2,8 @@ package com.iu.iulearn.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +38,5 @@ public class Role {
     }
 
     public Role() {
-    }
-
-    public int getId() {
-        return id;
     }
 }

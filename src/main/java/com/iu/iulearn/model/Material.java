@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "materials")
@@ -44,9 +43,5 @@ public class Material {
     }
 
     public Material() {
-    }
-
-    public Course getCourse() {
-        return course;
     }
 }

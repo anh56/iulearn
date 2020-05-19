@@ -3,7 +3,6 @@ package com.iu.iulearn.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
 import java.util.ArrayList;
