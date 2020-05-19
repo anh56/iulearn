@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "courses")
@@ -22,22 +22,22 @@ public class Course {
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "image", nullable = false)
     private String image;
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "lectures_count", nullable = false)
     private int lectures_count;
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "hour_count", nullable = false)
     private int hour_count;
 
     @Getter
@@ -71,17 +71,28 @@ public class Course {
     private Timestamp last_update;
 
     @Getter
+    @Setter
+    @Column(name = "category_id", nullable = false)
     @ManyToOne()
     @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Category category;
 
+    @Getter
+    @Setter
     @OneToMany(targetEntity = Video.class, mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Video> videos = new ArrayList<>();
 
+    @Getter
+    @Setter
     @OneToMany(targetEntity = Material.class, mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Material> materials = new ArrayList<>();
 
-    public Course(String title, String image, int lectures_count, int hour_count, int view_count, BigDecimal price, int discount, BigDecimal promotion_price, String content, Timestamp last_update, Category category) {
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "courses")
+    private Set<UserCourse> userCourses;
+
+    public Course(String title, String image, int lectures_count, int hour_count, int view_count, BigDecimal price, int discount, BigDecimal promotion_price, String content, Timestamp last_update, Category category, List<Video> videos, List<Material> materials, Set<UserCourse> userCourses) {
         this.title = title;
         this.image = image;
         this.lectures_count = lectures_count;
@@ -93,6 +104,9 @@ public class Course {
         this.content = content;
         this.last_update = last_update;
         this.category = category;
+        this.videos = videos;
+        this.materials = materials;
+        this.userCourses = userCourses;
     }
 
     public Course() {

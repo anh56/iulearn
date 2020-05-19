@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "videos")
@@ -18,25 +17,26 @@ public class Video {
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "url", nullable = false)
     private String url;
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "time_count", nullable = false)
     private int time_count;
 
     @Getter
+    @Setter
     @ManyToOne()
     @JoinColumn(name = "course_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Course course;
 
-    public Video(@NotNull String title, @NotNull String url, @NotNull int time_count, Course course) {
+    public Video(String title, String url, int time_count, Course course) {
         this.title = title;
         this.url = url;
         this.time_count = time_count;

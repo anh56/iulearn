@@ -19,19 +19,21 @@ public class Category {
 
     @Getter
     @Setter
+    @Column(name = "title", unique = true, nullable = false)
     private String title;
 
 //    private String icon;
 
+    @Getter
+    @Setter
     @OneToMany(targetEntity = Course.class, mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Course> courses = new ArrayList<>();
 
-    public Category(String title) {
+    public Category(String title, List<Course> courses) {
         this.title = title;
+        this.courses = courses;
     }
 
     public Category() {
     }
-
-
 }
