@@ -17,25 +17,26 @@ public class Material {
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "material_url", nullable = false)
     private String material_url;
 
     @Getter
     @Setter
-    @NotNull
+    @Column(name = "content", nullable = false)
     private String content;
 
     @Getter
+    @Setter
     @ManyToOne()
     @JoinColumn(name = "course_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Course course;
 
-    public Material(@NotNull String title, @NotNull String material_url, @NotNull String content, Course course) {
+    public Material(String title, String material_url, String content, Course course) {
         this.title = title;
         this.material_url = material_url;
         this.content = content;
