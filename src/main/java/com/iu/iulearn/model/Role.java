@@ -41,4 +41,8 @@ public class Role {
 
     public Role() {
     }
+
+    public int getId() {
+        return id;
+    }
 }

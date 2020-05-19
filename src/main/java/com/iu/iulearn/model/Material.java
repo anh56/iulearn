@@ -45,4 +45,8 @@ public class Material {
 
     public Material() {
     }
+
+    public Course getCourse() {
+        return course;
+    }
 }
