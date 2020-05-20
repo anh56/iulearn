@@ -3,7 +3,7 @@ package com.iu.iulearn.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-
+import com.iu.iulearn.model.UserCourse;
 import javax.persistence.*;
 import java.util.Set;
 
@@ -60,7 +60,7 @@ public class User {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     @JsonIgnore
     private Set<UserCourse> userCourses;
 

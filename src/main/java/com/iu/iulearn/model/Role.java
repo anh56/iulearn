@@ -29,7 +29,8 @@ public class Role {
 
     @Getter
     @Setter
-    @OneToMany(targetEntity = User.class, mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = User.class, mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<User> users = new ArrayList<>();
 
