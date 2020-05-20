@@ -1,5 +1,6 @@
 package com.iu.iulearn.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,9 +47,10 @@ public class User {
 
     @Getter
     @Setter
-    @Column(name = "role_id", nullable = false)
+//    @Column(name = "role_id", nullable = false)
     @ManyToOne()
     @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JsonIgnore
     private Role role;
 
     @Getter
@@ -59,6 +61,7 @@ public class User {
     @Getter
     @Setter
     @OneToMany(mappedBy = "users")
+    @JsonIgnore
     private Set<UserCourse> userCourses;
 
     public User(String email, String password, String fullname, String avatar, String phone, String address, Role role, String website, Set<UserCourse> userCourses) {

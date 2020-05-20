@@ -1,5 +1,6 @@
 package com.iu.iulearn.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +30,7 @@ public class Role {
     @Getter
     @Setter
     @OneToMany(targetEntity = User.class, mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<User> users = new ArrayList<>();
 
     public Role(String name, String description, List<User> users) {
