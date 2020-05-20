@@ -1,6 +1,7 @@
 package com.iu.iulearn.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,6 +35,7 @@ public class Video {
     @Setter
     @ManyToOne()
     @JoinColumn(name = "course_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JsonIgnore
     private Course course;
 
     public Video(String title, String url, int time_count, Course course) {
