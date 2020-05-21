@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 public class ActionAspect {
     private static Logger logger = LoggerFactory.getLogger(ActionAspect.class);
 
-    //    @Around("execution(* com.pyco.pycozza.service..*.*(..))")
     @Around("execution(* com.iu.iulearn..*.*(..))")
     public Object logMethod(ProceedingJoinPoint joinPoint) throws Throwable{
         String methodName = joinPoint.getSignature().getName();
