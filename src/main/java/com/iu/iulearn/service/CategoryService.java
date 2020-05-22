@@ -5,10 +5,10 @@ import com.iu.iulearn.model.Category;
 import java.util.List;
 
 public interface CategoryService {
-    void add(Category category);
-    void update(Category category);
-    Category getById(int id);
+    void addCategory(Category category);
+    void updateCategory(Category category);
+    Category getCategoryById(int id);
     List<Category> getAllCategory();
-    void delete(int id);
+    void deleteCategory(int id);
 
 }

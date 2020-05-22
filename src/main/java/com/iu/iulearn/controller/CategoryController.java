@@ -29,7 +29,7 @@ public class CategoryController {
     @PostMapping("")
     public Object add(@RequestBody Category category) {
         try {
-            categoryService.add(category);
+            categoryService.addCategory(category);
             return new ResponseEntity<String>("Added", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -39,7 +39,7 @@ public class CategoryController {
     @GetMapping("/{id}")
     public Object findById(@PathVariable int id) {
         try {
-            Category category = categoryService.getById(id);
+            Category category = categoryService.getCategoryById(id);
             return new ResponseEntity<Category>(category, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);

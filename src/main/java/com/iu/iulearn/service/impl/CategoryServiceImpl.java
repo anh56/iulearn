@@ -21,17 +21,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void add(Category category) {
+    public void addCategory(Category category) {
         categoryRepository.save(category);
     }
 
     @Override
-    public Category getById(int id) {
+    public Category getCategoryById(int id) {
         return categoryRepository.findById(id).get();
     }
 
     @Override
-    public void update(Category category) {
+    public void updateCategory(Category category) {
         Category categoryToUpdate = categoryRepository.findById(category.getId()).get();
         if (categoryToUpdate != null){
             categoryToUpdate.setTitle(category.getTitle());
@@ -42,7 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteCategory(int id) {
         categoryRepository.deleteById(id);
 
     }
