@@ -3,9 +3,11 @@ package com.iu.iulearn.service;
 import com.iu.iulearn.model.Role;
 import com.iu.iulearn.model.User;
 import com.iu.iulearn.model.UserCourse;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
+
 
 public interface UserService {
     void addUser(User user);
