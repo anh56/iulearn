@@ -27,4 +27,5 @@ public interface CourseService {
     List<Material> getAllCourseMaterial();
     Set<UserCourse> getAllUserCourse();
     List<Course> getAllCourses();
+
 }

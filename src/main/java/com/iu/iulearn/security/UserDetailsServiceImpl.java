@@ -31,6 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // role name must start with ROLE_someName
         authorities.add(new SimpleGrantedAuthority(roleName));
 
-        return new CustomerUserDetail(email, user.getPassword(), authorities);
+        return new CustomUserDetail(email, user.getPassword(), authorities);
     }
 }

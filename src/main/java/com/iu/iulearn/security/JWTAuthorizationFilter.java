@@ -1,6 +1,7 @@
 package com.iu.iulearn.security;
 
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +17,9 @@ import java.io.IOException;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
+
+
+
     private UserDetailsService _userDetailsService;
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager,
@@ -24,10 +28,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         _userDetailsService = userDetailsService;
     }
 
+    @Value("${APP.JWST_SECRET_KEY}")
+    private String JWT_SECRET_KEY;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
 //        super.doFilterInternal(request, response, chain);
-        final String JWT_SECRET = "!*&!1nt3ll3ctu@LUn1vErs3S3cr$tKey!*&!";
+
 
         //get token from request header
         String tokenBearer = request.getHeader("Authorization");
@@ -38,7 +45,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             String token = tokenBearer.replace("Bearer", "");
             //decode the token
             String email = Jwts.parser()
-                    .setSigningKey(JWT_SECRET)
+                    .setSigningKey(JWT_SECRET_KEY)
                     .parseClaimsJws(token)
                     .getBody()
                     .getSubject();

@@ -13,17 +13,18 @@ public class UserCourse implements Serializable {
     @Id
     @Getter
     @Setter
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, updatable = false)
+
     private User user;
 
     @Id
     @Getter
     @Setter
-    @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false)
-    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "course_id",  nullable = false, updatable = false)
     private Course course;
 
 //    @Getter

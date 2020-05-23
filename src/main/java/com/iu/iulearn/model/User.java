@@ -3,7 +3,6 @@ package com.iu.iulearn.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import com.iu.iulearn.model.UserCourse;
 import javax.persistence.*;
 import java.util.Set;
 
@@ -18,7 +17,7 @@ public class User {
 
     @Getter
     @Setter
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Getter
@@ -28,7 +27,8 @@ public class User {
 
     @Getter
     @Setter
-    private String fullname;
+    @Column(name = "fullname")
+    private String fullName;
 
     @Getter
     @Setter
@@ -47,9 +47,14 @@ public class User {
 
     @Getter
     @Setter
+    @Column(name = "role_id")
+    private int roleId;
+
+    @Getter
+    @Setter
 //    @Column(name = "role_id", nullable = false)
-    @ManyToOne()
-    @JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "role_id", insertable = false, updatable = false)
     @JsonIgnore
     private Role role;
 
@@ -64,16 +69,15 @@ public class User {
     @JsonIgnore
     private Set<UserCourse> userCourses;
 
-    public User(String email, String password, String fullname, String avatar, String phone, String address, Role role, String website, Set<UserCourse> userCourses) {
+    public User(String email, String password, String fullName, String avatar, String phone, String address, int roleId, String website) {
         this.email = email;
         this.password = password;
-        this.fullname = fullname;
+        this.fullName = fullName;
         this.avatar = avatar;
         this.phone = phone;
         this.address = address;
-        this.role = role;
+        this.roleId = roleId;
         this.website = website;
-        this.userCourses = userCourses;
     }
 
     public User() {

@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "roles")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
     private int id;
@@ -30,9 +30,9 @@ public class Role {
     @Getter
     @Setter
     //@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @OneToMany(targetEntity = User.class, mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany( mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<User> users = new ArrayList<>();
+    private List<User> users;
 
     public Role(String name, String description, List<User> users) {
         this.name = name;

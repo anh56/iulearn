@@ -5,7 +5,9 @@ import com.iu.iulearn.model.User;
 import com.iu.iulearn.model.UserCourse;
 import com.iu.iulearn.repository.UserRepository;
 import com.iu.iulearn.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,17 +19,28 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     public void addUser(User user) {
-        String email = user.getEmail();
-        if (userRepository.findByEmail(email) == null){
+        // check for available email
+        User userToAdd = userRepository.findByEmail(user.getEmail());
+        if (userToAdd == null){
+            // encrypt password before saving
+            String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+            user.setPassword(hashedPassword);
             userRepository.save(user);
         }
     }
 
     @Override
     public void updateUser(User user) {
-
+        User userToUpdate = userRepository.findById(user.getId());
+        if (userToUpdate != null ){
+            modelMapper.map(userToUpdate, user);
+            userRepository.save(userToUpdate);
+        }
     }
 
     @Override
@@ -42,7 +55,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByEmail(String email) {
-        return null;
+        return userRepository.findByEmail(email);
     }
 
     @Override

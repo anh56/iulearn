@@ -9,7 +9,7 @@ import java.util.Collection;
 
 @Getter
 @Setter
-public class CustomerUserDetail extends User {
+public class CustomUserDetail extends User {
     private String email;
     private String fullName;
     private String avatar;
@@ -17,7 +17,7 @@ public class CustomerUserDetail extends User {
     private String address;
 
 
-    public CustomerUserDetail(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public CustomUserDetail(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
     }
 
