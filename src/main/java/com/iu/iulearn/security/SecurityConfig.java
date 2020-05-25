@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // remove csrf filter
         http.csrf().disable()
                 .antMatcher("/iu/api/**").authorizeRequests()  // requests with /api need to be checked
-                .antMatchers("/iu/api/user/login", "/iu/api/user/register").permitAll() //skip check for these requests
+                .antMatchers("/iu/api/user/login", "/iu/api/user/register", "/iu/api/category**").permitAll() //skip check for these requests
                 .anyRequest().authenticated(); // the rest need to be login to use
     }
 

@@ -14,6 +14,8 @@ public interface MaterialService {
     Material getMaterialByMaterialUrl(String url);
     Material getMaterialByContent(String content);
     Material getMaterialByCourse(Course course);
+    List<Material> getMaterialByCourseId(int courseId);
+
     Course getAllMaterialCourse();
     List<Material> getAllMaterials();
 }

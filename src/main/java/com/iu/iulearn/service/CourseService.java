@@ -1,6 +1,7 @@
 package com.iu.iulearn.service;
 
 import com.iu.iulearn.model.*;
+import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -28,4 +29,5 @@ public interface CourseService {
     Set<UserCourse> getAllUserCourse();
     List<Course> getAllCourses();
 
+    Page getCourseByPage(int page, int size);
 }
