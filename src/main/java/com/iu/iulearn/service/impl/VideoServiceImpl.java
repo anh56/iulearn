@@ -2,6 +2,7 @@ package com.iu.iulearn.service.impl;
 
 
 import com.iu.iulearn.model.Course;
+import com.iu.iulearn.model.Lesson;
 import com.iu.iulearn.model.Video;
 import com.iu.iulearn.repository.VideoRepository;
 import com.iu.iulearn.service.MaterialService;
@@ -19,17 +20,21 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public void addVideo(Video video) {
-
+        videoRepository.save(video);
     }
 
     @Override
     public void updateVideo(Video video) {
-
+        Video videoToUpdate = videoRepository.findById(video.getId()).get();
+        if (videoToUpdate != null){
+            videoToUpdate.setTitle(video.getTitle());
+            videoRepository.save(video);
+        }
     }
 
     @Override
     public void deleteVideo(int id) {
-
+        videoRepository.deleteById(id);
     }
 
     @Override
@@ -58,12 +63,17 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Course getAllVideoCourse() {
+    public Lesson getAllVideoLesson() {
         return null;
     }
 
     @Override
     public List<Video> getAllVideos() {
         return videoRepository.findAll();
+    }
+
+    @Override
+    public List<Video> getVideoByLessonId(int lessonId) {
+        return videoRepository.findByLessonId(lessonId) ;
     }
 }

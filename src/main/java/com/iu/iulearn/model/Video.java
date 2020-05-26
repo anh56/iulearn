@@ -34,15 +34,23 @@ public class Video {
     @Getter
     @Setter
     @ManyToOne()
-    @JoinColumn(name = "course_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "lesson_id", referencedColumnName = "id", insertable = false, updatable = false)
     @JsonIgnore
-    private Course course;
+    private Lesson lesson;
 
-    public Video(String title, String url, int time_count, Course course) {
+//    public Video(String title, String url, int time_count, Course course) {
+//        this.title = title;
+//        this.url = url;
+//        this.time_count = time_count;
+//        this.course = course;
+//    }
+
+
+    public Video(String title, String url, int time_count, Lesson lesson) {
         this.title = title;
         this.url = url;
         this.time_count = time_count;
-        this.course = course;
+        this.lesson = lesson;
     }
 
     public Video() {

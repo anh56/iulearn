@@ -77,22 +77,45 @@ public class Course {
     @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Category category;
 
-    @Getter
-    @Setter
-    @OneToMany(targetEntity = Video.class, mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Video> videos = new ArrayList<>();
+//    @Getter
+//    @Setter
+//    @OneToMany(targetEntity = Video.class, mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Video> videos = new ArrayList<>();
+//
+//    @Getter
+//    @Setter
+//    @OneToMany(targetEntity = Material.class, mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Material> materials = new ArrayList<>();
 
     @Getter
     @Setter
     @OneToMany(targetEntity = Material.class, mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Material> materials = new ArrayList<>();
+    private List<Lesson> lessons = new ArrayList<>();
 
     @Getter
     @Setter
     @OneToMany(mappedBy = "course")
     private Set<UserCourse> userCourses;
 
-    public Course(String title, String image, int lectures_count, int hour_count, int view_count, BigDecimal price, int discount, BigDecimal promotion_price, String content, Timestamp last_update, Category category, List<Video> videos, List<Material> materials, Set<UserCourse> userCourses) {
+//    public Course(String title, String image, int lectures_count, int hour_count, int view_count, BigDecimal price, int discount, BigDecimal promotion_price, String content, Timestamp last_update, Category category, List<Video> videos, List<Material> materials, Set<UserCourse> userCourses) {
+//        this.title = title;
+//        this.image = image;
+//        this.lectures_count = lectures_count;
+//        this.hour_count = hour_count;
+//        this.view_count = view_count;
+//        this.price = price;
+//        this.discount = discount;
+//        this.promotion_price = promotion_price;
+//        this.content = content;
+//        this.last_update = last_update;
+//        this.category = category;
+//        this.videos = videos;
+//        this.materials = materials;
+//        this.userCourses = userCourses;
+//    }
+
+
+    public Course(String title, String image, int lectures_count, int hour_count, int view_count, BigDecimal price, int discount, BigDecimal promotion_price, String content, Timestamp last_update, Category category, List<Lesson> lessons, Set<UserCourse> userCourses) {
         this.title = title;
         this.image = image;
         this.lectures_count = lectures_count;
@@ -104,8 +127,7 @@ public class Course {
         this.content = content;
         this.last_update = last_update;
         this.category = category;
-        this.videos = videos;
-        this.materials = materials;
+        this.lessons = lessons;
         this.userCourses = userCourses;
     }
 

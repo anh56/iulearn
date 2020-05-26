@@ -1,6 +1,7 @@
 package com.iu.iulearn.service.impl;
 
 import com.iu.iulearn.model.Course;
+import com.iu.iulearn.model.Lesson;
 import com.iu.iulearn.model.Material;
 import com.iu.iulearn.repository.MaterialRepository;
 import com.iu.iulearn.service.MaterialService;
@@ -17,17 +18,21 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public void addMaterial(Material material) {
-
+        materialRepository.save(material);
     }
 
     @Override
     public void updateMaterial(Material material) {
-
+        Material materialToUpdate = materialRepository.findById(material.getId()).get();
+        if (materialToUpdate != null){
+            materialToUpdate.setTitle(material.getTitle());
+            materialRepository.save(material);
+        }
     }
 
     @Override
     public void deleteMaterial(int id) {
-
+        materialRepository.deleteById(id);
     }
 
     @Override
@@ -51,17 +56,17 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public Material getMaterialByCourse(Course course) {
+    public Material getMaterialByLesson(Lesson lesson) {
         return null;
     }
 
     @Override
-    public List<Material> getMaterialByCourseId(int  coursedId) {
-        return materialRepository.findByCourseId(coursedId) ;
+    public List<Material> getMaterialByLessonId(int  lessonId) {
+        return materialRepository.findByLessonId(lessonId) ;
     }
 
     @Override
-    public Course getAllMaterialCourse() {
+    public Lesson getAllMaterialLesson() {
         return null;
     }
 

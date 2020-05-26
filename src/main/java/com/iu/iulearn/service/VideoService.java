@@ -1,6 +1,7 @@
 package com.iu.iulearn.service;
 
 import com.iu.iulearn.model.Course;
+import com.iu.iulearn.model.Lesson;
 import com.iu.iulearn.model.Video;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface VideoService {
     Video getVideoByUrl(String url);
     Video getVideoByTimeCount(int timeCount);
     Video getVideoByCourse(Course course);
-    Course getAllVideoCourse();
+    Lesson getAllVideoLesson();
     List<Video> getAllVideos();
+
+    List<Video> getVideoByLessonId(int lessonId);
 }

@@ -27,21 +27,29 @@ public class Material {
 
     @Getter
     @Setter
-    @Column(name = "content", nullable = false)
+    @Column(columnDefinition = "longtext default NULL")
     private String content;
 
     @Getter
     @Setter
     @ManyToOne()
-    @JoinColumn(name = "course_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "lesson_id", referencedColumnName = "id", insertable = false, updatable = false)
     @JsonIgnore
-    private Course course;
+    private Lesson lesson;
 
-    public Material(String title, String material_url, String content, Course course) {
+//    public Material(String title, String material_url, String content, Course course) {
+//        this.title = title;
+//        this.material_url = material_url;
+//        this.content = content;
+//        this.course = course;
+//    }
+
+
+    public Material(String title, String material_url, String content, Lesson lesson) {
         this.title = title;
         this.material_url = material_url;
         this.content = content;
-        this.course = course;
+        this.lesson = lesson;
     }
 
     public Material() {

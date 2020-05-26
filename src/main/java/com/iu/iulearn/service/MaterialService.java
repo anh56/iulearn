@@ -1,6 +1,7 @@
 package com.iu.iulearn.service;
 
 import com.iu.iulearn.model.Course;
+import com.iu.iulearn.model.Lesson;
 import com.iu.iulearn.model.Material;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public interface MaterialService {
     Material getMaterialByTitle(String title);
     Material getMaterialByMaterialUrl(String url);
     Material getMaterialByContent(String content);
-    Material getMaterialByCourse(Course course);
-    List<Material> getMaterialByCourseId(int courseId);
+    Material getMaterialByLesson(Lesson lesson);
+    List<Material> getMaterialByLessonId(int lessonId);
 
-    Course getAllMaterialCourse();
+    Lesson getAllMaterialLesson();
     List<Material> getAllMaterials();
 }

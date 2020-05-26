@@ -38,7 +38,14 @@ public class VideoController {
         }
     }
 
-
+    @GetMapping("")
+    public Object getMaterialByCourseId(@PathVariable int lessonId){
+        try {
+            return new ResponseEntity<>(videoService.getVideoByLessonId(lessonId), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.toString(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
 

@@ -23,17 +23,21 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void addCourse(Course course) {
-
+        courseRepository.save(course);
     }
 
     @Override
     public void updateCourse(Course course) {
-
+        Course courseToUpdate = courseRepository.findById(course.getId()).get();
+        if (courseToUpdate != null){
+            courseToUpdate.setTitle(course.getTitle());
+            courseRepository.save(course);
+        }
     }
 
     @Override
     public void deleteCourse(int id) {
-
+        courseRepository.deleteById(id);
     }
 
     @Override
@@ -43,7 +47,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course getCourseByTitle(String title) {
-        return null;
+        return courseRepository.findByTitle(title);
     }
 
     @Override
