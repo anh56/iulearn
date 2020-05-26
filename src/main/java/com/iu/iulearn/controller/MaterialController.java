@@ -1,14 +1,15 @@
 package com.iu.iulearn.controller;
 
 
+import com.iu.iulearn.model.Lesson;
+import com.iu.iulearn.service.LessonService;
 import com.iu.iulearn.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/material")
@@ -16,6 +17,22 @@ public class MaterialController {
 
     @Autowired
     private MaterialService materialService;
+
+    @Autowired
+    private LessonService lessonService;
+//
+//    @GetMapping("/course")
+//    public Object getMaterialByCourseId(int id){
+//        try {
+//            List<Lesson> lessons =  lessonService.getLessonByCourseId(id);
+//            for (int index: lessons
+//                 ) {
+//
+//            }
+//        } catch (Exception e){
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
     @GetMapping("/all")
     public Object getAllMaterial(){
@@ -38,7 +55,7 @@ public class MaterialController {
     }
 
     @GetMapping("/")
-    public Object getMaterialByLessonId(@PathVariable int lessonId){
+    public Object getMaterialByLessonId(@RequestParam int lessonId){
         try {
             return new ResponseEntity<>(materialService.getMaterialByLessonId(lessonId), HttpStatus.OK);
         } catch (Exception e){

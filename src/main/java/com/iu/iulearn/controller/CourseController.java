@@ -27,6 +27,8 @@ public class CourseController {
         }
     }
 
+
+    // iu/api/course/3
     @GetMapping("/{id}")
     public Object getCourseById(@PathVariable int id){
         try {

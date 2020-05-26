@@ -74,4 +74,9 @@ public class MaterialServiceImpl implements MaterialService {
     public List<Material> getAllMaterials() {
         return materialRepository.findAll();
     }
+
+    @Override
+    public List<Material> getMaterialByCourseId(int id) {
+        return materialRepository.;
+    }
 }

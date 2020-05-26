@@ -38,7 +38,7 @@ public class VideoController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public Object getMaterialByCourseId(@PathVariable int lessonId){
         try {
             return new ResponseEntity<>(videoService.getVideoByLessonId(lessonId), HttpStatus.OK);

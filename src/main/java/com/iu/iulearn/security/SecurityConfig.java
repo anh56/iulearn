@@ -46,6 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
+        //create  cors config and add to security
+        http.cors();
+
         // remove csrf filter
         http.csrf().disable()
                 .antMatcher("/iu/api/**").authorizeRequests()  // requests with /api need to be checked

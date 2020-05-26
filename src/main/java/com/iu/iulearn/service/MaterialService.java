@@ -19,4 +19,5 @@ public interface MaterialService {
 
     Lesson getAllMaterialLesson();
     List<Material> getAllMaterials();
+    List<Material> getMaterialByCourseId(int id);
 }
