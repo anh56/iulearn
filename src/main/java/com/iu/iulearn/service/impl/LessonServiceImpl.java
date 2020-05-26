@@ -5,6 +5,8 @@ import com.iu.iulearn.model.Lesson;
 import com.iu.iulearn.repository.LessonRepository;
 import com.iu.iulearn.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,5 +69,11 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public List<Lesson> getAllLessons() {
         return lessonRepository.findAll();
+    }
+
+    @Override
+    public Page getLessonsByPage(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return lessonRepository.findAll(pageRequest);
     }
 }

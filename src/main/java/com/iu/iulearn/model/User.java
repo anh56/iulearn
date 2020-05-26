@@ -27,7 +27,7 @@ public class User {
 
     @Getter
     @Setter
-    @Column(name = "fullname")
+    @Column(name = "fullName")
     private String fullName;
 
     @Getter

@@ -1,6 +1,7 @@
 package com.iu.iulearn.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -89,12 +90,14 @@ public class Course {
 
     @Getter
     @Setter
-    @OneToMany(targetEntity = Material.class, mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Lesson.class, mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Lesson> lessons = new ArrayList<>();
 
     @Getter
     @Setter
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private Set<UserCourse> userCourses;
 
 //    public Course(String title, String image, int lectures_count, int hour_count, int view_count, BigDecimal price, int discount, BigDecimal promotion_price, String content, Timestamp last_update, Category category, List<Video> videos, List<Material> materials, Set<UserCourse> userCourses) {

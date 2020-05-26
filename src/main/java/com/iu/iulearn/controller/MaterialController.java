@@ -37,7 +37,7 @@ public class MaterialController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public Object getMaterialByLessonId(@PathVariable int lessonId){
         try {
             return new ResponseEntity<>(materialService.getMaterialByLessonId(lessonId), HttpStatus.OK);

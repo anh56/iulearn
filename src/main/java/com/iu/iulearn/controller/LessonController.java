@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/material")
+@RequestMapping("/lessons")
 public class LessonController {
     @Autowired
     private LessonService lessonService;
@@ -33,7 +33,7 @@ public class LessonController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public Object getLessonByCourseId(@PathVariable int courseId){
         try {
             return new ResponseEntity<>(lessonService.getLessonByCourseId(courseId), HttpStatus.OK);
@@ -41,4 +41,5 @@ public class LessonController {
             return new ResponseEntity<>(e.toString(), HttpStatus.BAD_REQUEST);
         }
     }
+
 }

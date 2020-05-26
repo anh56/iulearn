@@ -2,6 +2,7 @@ package com.iu.iulearn.service;
 
 import com.iu.iulearn.model.Course;
 import com.iu.iulearn.model.Lesson;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface LessonService {
 
     Course getAllLessonCourse();
     List<Lesson> getAllLessons();
+
+    Page getLessonsByPage(int page, int size);
 }

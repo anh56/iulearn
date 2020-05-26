@@ -22,10 +22,10 @@ public class Lesson {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Getter
-    @Setter
-    @Column(name = "material_url", nullable = false)
-    private String material_url;
+//    @Getter
+//    @Setter
+//    @Column(name = "material_url", nullable = false)
+//    private String material_url;
 
     @Getter
     @Setter
@@ -49,9 +49,8 @@ public class Lesson {
     @OneToMany(targetEntity = Material.class, mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Material> materials = new ArrayList<>();
 
-    public Lesson(String title, String material_url, String content, Course course, List<Video> videos, List<Material> materials) {
+    public Lesson(String title, String content, Course course, List<Video> videos, List<Material> materials) {
         this.title = title;
-        this.material_url = material_url;
         this.content = content;
         this.course = course;
         this.videos = videos;

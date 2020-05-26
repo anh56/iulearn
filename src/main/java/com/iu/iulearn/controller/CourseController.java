@@ -38,7 +38,7 @@ public class CourseController {
 
 
     @GetMapping("/page")
-    public Object getProductList(@RequestParam(defaultValue = "1") int page,
+    public Object getProductList(@RequestParam(defaultValue = "0") int page,
                                         @RequestParam(defaultValue = "5") int size){
         try {
             return new ResponseEntity<Page>(courseService.getCourseByPage(page, size), HttpStatus.OK);
