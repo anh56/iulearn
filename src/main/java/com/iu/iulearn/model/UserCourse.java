@@ -11,12 +11,14 @@ import java.io.Serializable;
 @Table(name = "user_courses")
 public class UserCourse implements Serializable {
     @Id
+    private int id;
+
+    @Id
     @Getter
     @Setter
     @ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     @JoinColumn(name = "user_id", nullable = false, updatable = false)
-
     private User user;
 
     @Id
@@ -24,7 +26,7 @@ public class UserCourse implements Serializable {
     @Setter
     @ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false)
-    @JoinColumn(name = "course_id",  nullable = false, updatable = false)
+    @JoinColumn(name = "course_id", nullable = false, updatable = false)
     private Course course;
 
 //    @Getter

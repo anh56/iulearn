@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -70,6 +71,18 @@ public class User {
     private Set<UserCourse> userCourses;
 
     public User(String email, String password, String fullName, String avatar, String phone, String address, int roleId, String website) {
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+        this.avatar = avatar;
+        this.phone = phone;
+        this.address = address;
+        this.roleId = roleId;
+        this.website = website;
+    }
+
+    public User(String email, String password, String fullName, String avatar, String phone, String address, int roleId, String website, Set<UserCourse> userCourses) {
+        this.userCourses = userCourses;
         this.email = email;
         this.password = password;
         this.fullName = fullName;

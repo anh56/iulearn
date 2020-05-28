@@ -77,6 +77,6 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public List<Material> getMaterialByCourseId(int id) {
-        return materialRepository.;
+        return null;
     }
 }

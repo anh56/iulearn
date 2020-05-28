@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/lessons")
+@CrossOrigin
 public class LessonController {
     @Autowired
     private LessonService lessonService;

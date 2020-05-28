@@ -35,6 +35,9 @@ public class Category {
         this.title = title;
         this.courses = courses;
     }
+    public Category(String title) {
+        this.title = title;
+     }
 
     public Category() {
     }
