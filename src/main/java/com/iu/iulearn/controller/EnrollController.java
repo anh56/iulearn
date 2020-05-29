@@ -2,8 +2,10 @@ package com.iu.iulearn.controller;
 
 
 import com.iu.iulearn.dto.CourseEnrollmentDTO;
+import com.iu.iulearn.model.Course;
 import com.iu.iulearn.model.User;
 import com.iu.iulearn.service.CourseService;
+import com.iu.iulearn.service.UserCourseService;
 import com.iu.iulearn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/enroll")
 public class EnrollController {
@@ -23,6 +28,9 @@ public class EnrollController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserCourseService userCourseService;
 
     @PostMapping("/enroll")
     public Object enrollUserToCourse(@RequestBody CourseEnrollmentDTO courseEnrollmentDTO){
@@ -38,6 +46,16 @@ public class EnrollController {
             User user = userService.getUserByEmail(email);
 
             //TODO: implementation of user-course enrollment
+            List<Course> courseList = new ArrayList<>();
+            for (int i : courseEnrollmentDTO.getCourseListId()
+                 ) {
+                Course course = courseService.getCourseById(i);
+                courseList.add(course);
+
+            }
+
+
+
 
             return new ResponseEntity<>("Course Registration success", HttpStatus.OK);
 

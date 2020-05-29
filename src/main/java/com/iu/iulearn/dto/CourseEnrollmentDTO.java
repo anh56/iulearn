@@ -10,5 +10,5 @@ public class CourseEnrollmentDTO {
 
     @Getter
     @Setter
-    private List<Course> courseList;
+    private List<Integer> courseListId;
 }
