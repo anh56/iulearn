@@ -16,7 +16,7 @@ import java.util.Set;
 @Table(name = "courses")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
     private int id;
@@ -96,7 +96,7 @@ public class Course {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "id.course")
     @JsonIgnore
     private Set<UserCourse> userCourses;
 
