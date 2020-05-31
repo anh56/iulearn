@@ -66,7 +66,7 @@ public class EnrollController {
 //
 //    }
 //
-    @PostMapping("/token/{course_id}")
+    @PostMapping("/{course_id}")
     public Object enrollCourse(@PathVariable int course_id){
 
         try {
@@ -96,21 +96,4 @@ public class EnrollController {
 
     }
 
-    @PostMapping("")
-    public Object enrollUserToCourse(@RequestParam(required = true) String email, @RequestParam(required = true) int course_id){
-        try {
-            User user = userService.getUserByEmail(email);
-
-            // add course and user to userCourse
-            Course course = courseService.getCourseById(course_id);
-            UserCourse userCourse = new UserCourse();
-            userCourse.setId(new UserCourseId(user, course));
-
-            userCourseService.addUserCourse(userCourse);
-
-            return new ResponseEntity<>("Registration is successful", HttpStatus.OK);
-        } catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
 }
