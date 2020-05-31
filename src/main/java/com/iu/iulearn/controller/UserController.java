@@ -19,12 +19,12 @@ import java.util.Date;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.HEAD, RequestMethod.OPTIONS})
 public class UserController {
 
-    @Value("${APP.JWST_SECRET_KEY}")
-    private String JWT_SECRET_KEY;
+//    @Value("${JWT_SECRET_KEY }")
+    private final static String JWT_SECRET_KEY = "!*&!1nt3ll3ctu@LUn1vErs3S3cr$tKey!*&!";
 
     @Autowired
     private UserService userService;

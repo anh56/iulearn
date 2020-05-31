@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -50,9 +51,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
         // remove csrf filter
         http.csrf().disable()
-                .antMatcher("/iu/api/**").authorizeRequests()  // requests with /api need to be checked
-                .antMatchers("/iu/api/user/login", "/iu/api/user/register", "/iu/api/category**").permitAll() //skip check for these requests
+                .antMatcher("/api/**").authorizeRequests()  // requests with /api need to be checked for authorization
+                .antMatchers("/api/user/login", "/api/user/register", "/api/category/**","/api/course/**").permitAll() //skip check for these requests
+                .antMatchers("/api/video/**","/api/material/**").hasAnyRole("STUDENT") // example authenticate, only student can access url with these
                 .anyRequest().authenticated(); // the rest need to be login to use
+
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(), userDetailsService));
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Override

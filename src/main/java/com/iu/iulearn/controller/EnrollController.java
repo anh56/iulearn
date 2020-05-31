@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/enroll")
+@RequestMapping("/api/enroll")
 public class EnrollController {
     @Autowired
     private CourseService courseService;
@@ -69,7 +69,7 @@ public class EnrollController {
     @PostMapping("/token/{course_id}")
     public Object enrollCourse(@PathVariable int course_id){
 
-//        try {
+        try {
 //             get user info from security context
             Object principal =
                     SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -90,9 +90,9 @@ public class EnrollController {
 
             return new ResponseEntity<String>("Registration is successful", HttpStatus.OK);
 
-//        } catch (Exception e){
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
     }
 

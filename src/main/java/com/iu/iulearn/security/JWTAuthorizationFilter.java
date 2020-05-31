@@ -18,6 +18,9 @@ import java.io.IOException;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
+//    @Value("${JWT_SECRET_KEY }")
+    private final static String JWT_SECRET_KEY = "!*&!1nt3ll3ctu@LUn1vErs3S3cr$tKey!*&!";
+
     private UserDetailsService _userDetailsService;
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager,
@@ -26,13 +29,12 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         _userDetailsService = userDetailsService;
     }
 
-    @Value("${APP.JWST_SECRET_KEY}")
-    private String JWT_SECRET_KEY;
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
 //        super.doFilterInternal(request, response, chain);
-    try{
+
+
+        try{
         //get token from request header
         String tokenBearer = request.getHeader("Authorization");
 
