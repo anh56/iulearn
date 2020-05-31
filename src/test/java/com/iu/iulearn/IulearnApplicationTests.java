@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 class IulearnApplicationTests {
 
-
     @Autowired
     private UserRepository userRepository;
 
@@ -26,7 +25,6 @@ class IulearnApplicationTests {
 
     @Autowired
     private UserCourseRepository userCourseRepository;
-
 
     @Before
     public void init(){
