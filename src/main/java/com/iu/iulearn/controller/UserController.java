@@ -13,9 +13,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.Oneway;
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
@@ -69,6 +72,74 @@ public class UserController {
             return new ResponseEntity<>("User not available", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/all")
+    public Object getAllUser(){
+        try {
+            List<User> users =  userService.getAllUsers();
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>("Get all users failed with exception: "+ e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/page")
+    public Object getUserByPage(@RequestParam(defaultValue = "0") int page,
+                                @RequestParam(defaultValue = "5") int size){
+        try {
+            return new ResponseEntity<>(userService.getUserByPage(page, size), HttpStatus.OK);
+        } catch (Exception e){
+            return  new ResponseEntity<>("Get user by page failed with exception: "+ e.getMessage()
+                    , HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public Object getUserById(@PathVariable int id){
+        try {
+            User user = userService.getUserById(id);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+
+        } catch (Exception e){
+            return new ResponseEntity<>("Get user by id " + id +"fail with exception:"+ e.getMessage()
+                    , HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public Object updateUserById(@PathVariable int id, @RequestBody User user){
+        try {
+            user.setId(id);
+            userService.updateUser(user);
+            return  new ResponseEntity<>("Updated user with id: "+id, HttpStatus.OK);
+
+
+        } catch (Exception e){
+            return new ResponseEntity<>("Update user by id: "+id+ "failed with exception: "+ e.getMessage()
+                    , HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public Object deleteUserById(@PathVariable int id){
+        try {
+            userService.deleteUser(id);
+            return new ResponseEntity<>("Deleted user by id: "+id, HttpStatus.OK);
+
+        } catch (Exception e){
+            return new ResponseEntity<>("Delete user by id:"+id+" failed with exception: "+e.getMessage()
+                    , HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+
+
+
+
+
+
 }
 
 

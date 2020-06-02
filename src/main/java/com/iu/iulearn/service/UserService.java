@@ -3,6 +3,7 @@ package com.iu.iulearn.service;
 import com.iu.iulearn.model.Role;
 import com.iu.iulearn.model.User;
 import com.iu.iulearn.model.UserCourse;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface UserService {
     Role getAllUserRole();
     Set<UserCourse> getAllUserCourse();
     List<User> getAllUsers();
+
+    Page getUserByPage(int page, int size);
 }

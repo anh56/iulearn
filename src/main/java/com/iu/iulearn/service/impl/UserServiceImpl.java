@@ -7,6 +7,8 @@ import com.iu.iulearn.repository.UserRepository;
 import com.iu.iulearn.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +47,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(int id) {
+
+        userRepository.delete(userRepository.findById(id));
 
     }
 
@@ -95,6 +99,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        return userRepository.findAll();
+    }
+
+    @Override
+    public Page getUserByPage(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return userRepository.findAll(pageRequest);
     }
 }
