@@ -31,6 +31,7 @@ public class CourseServiceImpl implements CourseService {
         Course courseToUpdate = courseRepository.findById(course.getId()).get();
         if (courseToUpdate != null){
             courseToUpdate.setTitle(course.getTitle());
+            courseToUpdate.setCategory(course.getCategory());
             courseRepository.save(course);
         }
     }
@@ -49,16 +50,16 @@ public class CourseServiceImpl implements CourseService {
     public Course getCourseByTitle(String title) {
         return courseRepository.findByTitle(title);
     }
-
-    @Override
-    public Course getCourseByLectureCount(int lectureCount) {
-        return null;
-    }
-
-    @Override
-    public Course getCourseByHourCount(int hourCount) {
-        return null;
-    }
+//
+//    @Override
+//    public Course getCourseByLectureCount(int lectureCount) {
+//        return courseRepository.findByLectures_count(lectureCount);
+//    }
+//
+//    @Override
+//    public Course getCourseByHourCount(int hourCount) {
+//        return courseRepository.findByHour_count(hourCount);
+//    }
 
     @Override
     public Course getCourseByView(int view) {

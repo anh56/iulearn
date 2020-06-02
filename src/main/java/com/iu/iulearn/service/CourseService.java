@@ -14,8 +14,8 @@ public interface CourseService {
     void deleteCourse(int id);
     Course getCourseById(int id);
     Course getCourseByTitle(String title);
-    Course getCourseByLectureCount(int lectureCount);
-    Course getCourseByHourCount(int hourCount);
+//    Course getCourseByLectureCount(int lectureCount);
+//    Course getCourseByHourCount(int hourCount);
     Course getCourseByView(int view);
     Course getCourseByPrice(BigDecimal price);
     Course getCourseByDiscount(int discount);

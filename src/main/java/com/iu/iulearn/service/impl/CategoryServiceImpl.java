@@ -35,7 +35,7 @@ public class CategoryServiceImpl implements CategoryService {
         Category categoryToUpdate = categoryRepository.findById(category.getId()).get();
         if (categoryToUpdate != null){
             categoryToUpdate.setTitle(category.getTitle());
-//            categoryToUpdate.setCourses(category.getCourses());
+            categoryToUpdate.setCourses(category.getCourses());
 //            categoryToUpdate.setOrderIndex(category.getOrderIndex());
             categoryRepository.save(category);
         }

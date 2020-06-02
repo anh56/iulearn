@@ -50,11 +50,41 @@ public class CourseController {
         }
     }
 
+    @PostMapping("/add")
+    public Object add(@RequestBody Course course){
+        try {
+            courseService.addCourse(course);
+            return new ResponseEntity<>("Added course" , HttpStatus.OK);
+
+        } catch (Exception e){
+            return new ResponseEntity<>("Add course failed with exception: "+e.getMessage()
+                    , HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public Object updateCourseById(@PathVariable int id, @RequestBody Course course){
+        try {
+            course.setId(id);
+            courseService.updateCourse(course);
+            return new ResponseEntity<>("Updated course with id: "+id, HttpStatus.OK);
 
 
+        } catch (Exception e){
+            return new ResponseEntity<>("Update course by id: "+id+ "failed with exception: "+ e.getMessage()
+                    , HttpStatus.BAD_REQUEST);
+        }
+    }
 
+    @DeleteMapping("/{id}")
+    public Object deleteCourseById(@PathVariable int id){
+        try {
+            courseService.deleteCourse(id);
+            return new ResponseEntity<>("Deleted course by id: "+id, HttpStatus.OK);
 
-
-
-
+        } catch (Exception e){
+            return new ResponseEntity<>("Delete course by id:"+id+" failed with exception: "+e.getMessage()
+                    , HttpStatus.BAD_REQUEST);
+        }
+    }
 }

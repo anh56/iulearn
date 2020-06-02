@@ -111,7 +111,7 @@ public class UserController {
         try {
             user.setId(id);
             userService.updateUser(user);
-            return  new ResponseEntity<>("Updated user with id: "+id, HttpStatus.OK);
+            return new ResponseEntity<>("Updated user with id: "+id, HttpStatus.OK);
 
 
         } catch (Exception e){
