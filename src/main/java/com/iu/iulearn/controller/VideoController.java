@@ -45,6 +45,20 @@ public class VideoController {
         }
     }
 
+    @PostMapping("/add")
+    public Object addMaterial(@RequestBody Video video) {
+        try {
+            videoService.addVideo(video);
+            return new ResponseEntity<>("Video added", HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Video add failed with exception: " + e.getMessage(),
+                    HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
     @PutMapping("/{id}")
     public Object updateVideo(@PathVariable int id, @RequestBody Video video) {
         try {

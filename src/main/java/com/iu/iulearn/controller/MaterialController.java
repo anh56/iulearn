@@ -1,7 +1,7 @@
 package com.iu.iulearn.controller;
 
 
-import com.iu.iulearn.model.Lesson;
+
 import com.iu.iulearn.model.Material;
 import com.iu.iulearn.service.LessonService;
 import com.iu.iulearn.service.MaterialService;
@@ -59,6 +59,19 @@ public class MaterialController {
             return new ResponseEntity<>(materialService.getMaterialByLessonId(lessonId), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(e.toString(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    @PostMapping("/add")
+    public Object addMaterial(@RequestBody Material material) {
+        try {
+            materialService.addMaterial(material);
+            return new ResponseEntity<>("Material added", HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Material add failed with exception: " + e.getMessage(),
+                    HttpStatus.BAD_REQUEST);
         }
     }
 
