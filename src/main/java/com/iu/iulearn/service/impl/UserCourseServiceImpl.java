@@ -26,6 +26,11 @@ public class UserCourseServiceImpl implements UserCourseService {
     }
 
     @Override
+    public void deleteUserCourse(UserCourse userCourse) {
+        userCourseRepository.delete(userCourse);
+    }
+
+    @Override
     public void deleteUserCourseByUser(User user) {
 
     }
@@ -59,4 +64,5 @@ public class UserCourseServiceImpl implements UserCourseService {
     public List<UserCourse> getAllUserCourse() {
         return null;
     }
+
 }

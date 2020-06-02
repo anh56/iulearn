@@ -88,12 +88,37 @@ public class EnrollController {
 
             userCourseService.addUserCourse(userCourse);
 
-            return new ResponseEntity<String>("Registration is successful", HttpStatus.OK);
+            return new ResponseEntity<String>("Registration for course with id: " +course_id+" is successful", HttpStatus.OK);
 
         } catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Registration for course with id: "+course_id+" failed with exception: " + e.getMessage()
+                    ,HttpStatus.BAD_REQUEST);
         }
+    }
 
+    @DeleteMapping("/{course_id}")
+    public Object withdrawCourse(@PathVariable int course_id){
+        try {
+            // get user from token
+            Object principal =
+                    SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            //cast to userDetails
+            UserDetails userDetails = (UserDetails) principal;
+
+            String email = userDetails.getUsername();
+
+            User user = userService.getUserByEmail(email);
+            Course course = courseService.getCourseById(course_id);
+            UserCourse userCourse = new UserCourse();
+            userCourse.setId(new UserCourseId(user, course));
+
+            userCourseService.deleteUserCourse(userCourse);
+            return new ResponseEntity<String>("Withdraw from course with id: " +course_id+" is successful", HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>("Withdraw for course with id: "+course_id+" failed with exception: " + e.getMessage(),
+                    HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
