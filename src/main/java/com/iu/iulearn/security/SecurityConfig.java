@@ -51,7 +51,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .antMatcher("/api/**").authorizeRequests()  // requests with /api need to be checked for authorization
                 .antMatchers("/api/user/login", "/api/user/register", "/api/category/**","/api/course/**").permitAll() //skip check for these requests
-                .antMatchers("/api/video/**","/api/material/**").hasAnyRole("STUDENT") // example authenticate, only student can access url with these
+                .antMatchers("/api/video/**","/api/material/**").hasAnyRole("STUDENT","ADMIN","TA") // example authenticate, only student can access url with these
+                .antMatchers("/api/course/add").hasAnyRole("ADMIN", "TA")
+                .antMatchers("/api/category/add").hasAnyRole("ADMIN", "TA")
+                .antMatchers("/api/lesson/add").hasAnyRole("ADMIN", "TA")
+                .antMatchers("/api/material/add").hasAnyRole("ADMIN", "TA")
+                .antMatchers("/api/video/add").hasAnyRole("ADMIN", "TA")
+                .antMatchers("/api/user/all","/api/user/page", "/api/user/{id}").hasAnyRole("ADMIN")
                 .anyRequest().authenticated(); // the rest need to be login to use
 
         http.addFilter(new JWTAuthorizationFilter(authenticationManager(), userDetailsService));
