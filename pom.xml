@@ -142,6 +142,16 @@
             <artifactId>jakarta.jws-api</artifactId>
             <version>2.1.0</version>
         </dependency>
+
+
+
+        <!-- https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java SENDGRID API for mailing service-->
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

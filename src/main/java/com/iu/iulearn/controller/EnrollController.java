@@ -45,7 +45,7 @@ public class EnrollController {
 //            String email = userDetails.getUsername();
 //            User user = userService.getUserByEmail(email);
 //
-//            //TODO: implementation of user-course enrollment
+//            //
 //            List<Course> courseList = new ArrayList<>();
 //            for (int i : courseEnrollmentDTO.getCourseListId()
 //                 ) {
