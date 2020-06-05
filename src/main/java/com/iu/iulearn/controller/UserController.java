@@ -43,7 +43,6 @@ public class UserController {
     @PostMapping("register")
     public Object addUser(@RequestBody User user) throws IOException {
         try {
-
             if (userService.getUserByEmail(user.getEmail()) == null) {
                 userService.addUser(user);
                 // send email using SendGrid Api
