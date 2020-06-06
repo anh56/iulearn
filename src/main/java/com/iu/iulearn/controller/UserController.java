@@ -60,7 +60,7 @@ public class UserController {
         }
     }
     private void sendConfirmEmail(String userEmail) throws IOException {
-        Email from = new Email("interlectualuniverse@gmail.com");
+        Email from = new Email("01ntanh9a3@gmail.com");
         String subject = "IU Learn team wants to thank you!";
         Email to = new Email(userEmail);
         Content content = new Content("text/plain", "Thank you for choosing our service! This email is to test our emailing service through SendGrid API!");
