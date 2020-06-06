@@ -3,21 +3,25 @@ package com.iu.iulearn.controller;
 import com.iu.iulearn.dto.LoginDTO;
 import com.iu.iulearn.model.User;
 import com.iu.iulearn.service.UserService;
-import com.sendgrid.*;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Content;
+import com.sendgrid.helpers.mail.objects.Email;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.Oneway;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +50,7 @@ public class UserController {
             if (userService.getUserByEmail(user.getEmail()) == null) {
                 userService.addUser(user);
                 // send email using SendGrid Api
-                sendConfirmEmail(user.getEmail());
+//                sendConfirmEmail(user.getEmail());
 
                 return new ResponseEntity<>("User added", HttpStatus.CREATED);
             } else return new ResponseEntity<String>("User with this email existed", HttpStatus.BAD_REQUEST);
@@ -54,11 +58,8 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>("User registration failed with exception: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
     }
-
-
-    public void sendConfirmEmail(String userEmail) throws IOException {
+    private void sendConfirmEmail(String userEmail) throws IOException {
         Email from = new Email("interlectualuniverse@gmail.com");
         String subject = "IU Learn team wants to thank you!";
         Email to = new Email(userEmail);
@@ -67,17 +68,13 @@ public class UserController {
 
         SendGrid sg = new SendGrid(token);
         Request request = new Request();
-        try {
-            request.setMethod(Method.POST);
-            request.setEndpoint("mail/send");
-            request.setBody(mail.build());
-            Response response = sg.api(request);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
-        } catch (IOException ex) {
-            throw ex;
-        }
+        request.setMethod(Method.POST);
+        request.setEndpoint("mail/send");
+        request.setBody(mail.build());
+        Response response = sg.api(request);
+        System.out.println(response.getStatusCode());
+        System.out.println(response.getBody());
+        System.out.println(response.getHeaders());
     }
 
     @PostMapping("login")

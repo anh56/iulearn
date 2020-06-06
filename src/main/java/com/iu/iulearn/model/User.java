@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
     private int id;

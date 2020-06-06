@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.iu</groupId>
     <artifactId>iulearn</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <name>iulearn</name>
     <description>Project for Web Development Course</description>
 
@@ -20,10 +20,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -149,7 +145,6 @@
         <dependency>
             <groupId>com.sendgrid</groupId>
             <artifactId>sendgrid-java</artifactId>
-            <version>4.0.1</version>
         </dependency>
 
     </dependencies>
