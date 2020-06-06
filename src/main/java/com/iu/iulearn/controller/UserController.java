@@ -50,7 +50,7 @@ public class UserController {
             if (userService.getUserByEmail(user.getEmail()) == null) {
                 userService.addUser(user);
                 // send email using SendGrid Api
-//                sendConfirmEmail(user.getEmail());
+                sendConfirmEmail(user.getEmail());
 
                 return new ResponseEntity<>("User added", HttpStatus.CREATED);
             } else return new ResponseEntity<String>("User with this email existed", HttpStatus.BAD_REQUEST);
