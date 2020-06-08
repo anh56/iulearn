@@ -62,7 +62,12 @@ public class UserCourseServiceImpl implements UserCourseService {
 
     @Override
     public List<UserCourse> getAllUserCourse() {
-        return null;
+        return userCourseRepository.findAll();
+    }
+
+    @Override
+    public List<UserCourse> getUserCourseByUserEmail(String email) {
+        return  userCourseRepository.findAllById_User_Email(email);
     }
 
 }

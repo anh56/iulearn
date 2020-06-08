@@ -18,4 +18,5 @@ public interface UserCourseService {
     Course getAllUserCourseCourse();
     List<UserCourse> getAllUserCourse();
 
+    List<UserCourse> getUserCourseByUserEmail(String email);
 }
