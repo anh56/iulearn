@@ -1,6 +1,7 @@
 package com.iu.iulearn.controller;
 
 import com.iu.iulearn.dto.LoginDTO;
+import com.iu.iulearn.dto.ResponseLoginDTO;
 import com.iu.iulearn.model.User;
 import com.iu.iulearn.service.UserService;
 import com.sendgrid.Method;
@@ -99,6 +100,43 @@ public class UserController {
                     .signWith(SignatureAlgorithm.HS512, JWT_SECRET_KEY)
                     .compact();
             return new ResponseEntity<>(token, HttpStatus.OK);
+        } catch (BadCredentialsException b) {
+            return new ResponseEntity<>("Wrong username or password", HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>("User not available", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/v2/login")
+    public Object login2(@RequestBody LoginDTO loginDTO) {
+        try {
+            ResponseLoginDTO responseLoginDTO = new ResponseLoginDTO();
+            // authenticate user
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
+            // build token
+            User userToDeliver = userService.getUserByEmail(loginDTO.getEmail());
+            Date dateNow = new Date();
+            String token = Jwts.builder()
+                    .setSubject(loginDTO.getEmail()) // sub as email
+                    .claim("fullName", userToDeliver.getFullName())
+                    .claim("phone", userToDeliver.getPhone())
+                    .claim("address", userToDeliver.getAddress())
+                    .claim("avatar", userToDeliver.getAvatar())
+                    .claim("website", userToDeliver.getWebsite())
+                    .setIssuedAt(dateNow)            // created date
+                    .setExpiration(new Date(dateNow.getTime() + 864000000L)) // expiry date = 10 days after created
+                    .signWith(SignatureAlgorithm.HS512, JWT_SECRET_KEY)
+                    .compact();
+            responseLoginDTO.setToken(token);
+
+            // get roleId and return view
+            int roleId = userToDeliver.getRoleId();
+            if (roleId == 1) responseLoginDTO.setView("/admin");
+            else if (roleId == 2) responseLoginDTO.setView("/ta");
+            else responseLoginDTO.setView("");
+
+            return new ResponseEntity<>(responseLoginDTO, HttpStatus.OK);
         } catch (BadCredentialsException b) {
             return new ResponseEntity<>("Wrong username or password", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
