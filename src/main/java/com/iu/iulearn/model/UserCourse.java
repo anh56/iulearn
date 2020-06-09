@@ -3,6 +3,7 @@ package com.iu.iulearn.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +22,24 @@ public class UserCourse {
 
     public UserCourse() {
     }
+
+
+    public String toStringUser(){
+        return Integer.toString(getId().getUser().getId());
+    }
+
+    public String toStringCourse() {
+        return Integer.toString(getId().getCourse().getId());
+    }
+
+    @Override
+    public String toString() {
+        return '{' +
+                "\"userId\": " + toStringUser() + ", " +
+                "\"courseId\": " + toStringCourse() +
+                '}';
+    }
+
 
     //
 //    @Id

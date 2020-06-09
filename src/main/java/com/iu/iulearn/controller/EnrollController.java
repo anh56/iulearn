@@ -123,19 +123,30 @@ public class EnrollController {
 
 
 
-    @PostMapping("/user/")
+    @GetMapping("/user/email")
     public Object getEnrolledCourseByUserEmail(@RequestParam String email){
         try{
-            return new ResponseEntity<>(userCourseService.getUserCourseByUserEmail(email), HttpStatus.OK);
+            return new ResponseEntity<>(userCourseService.getUserCourseByUserEmail(email).toString(), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>("Get enrolled course by user email failed with exception: "+e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    @GetMapping("/user/{id}")
+    public Object getEnrolledCourseByUserId(@PathVariable int id){
+        try {
+            return new ResponseEntity<>(userCourseService.getUserCourseByUserId(id).toString(), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>("Get all enrollled course of user with id: " + id+" failed with exception: "
+            + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/all")
     public Object getAllEnrolledCourseOfAllUser(){
         try {
-            return new ResponseEntity<>(userCourseService.getAllUserCourse(), HttpStatus.OK);
+            return new ResponseEntity<>(userCourseService.getAllUserCourse().toString(), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>("Get all enrolled courses of all users failed with exception: "+ e.getMessage(), HttpStatus.BAD_REQUEST);
         }

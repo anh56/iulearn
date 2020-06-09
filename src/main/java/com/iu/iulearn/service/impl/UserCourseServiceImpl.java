@@ -3,6 +3,7 @@ package com.iu.iulearn.service.impl;
 import com.iu.iulearn.model.Course;
 import com.iu.iulearn.model.User;
 import com.iu.iulearn.model.UserCourse;
+import com.iu.iulearn.repository.EnrolledCourseRepository;
 import com.iu.iulearn.repository.UserCourseRepository;
 import com.iu.iulearn.service.UserCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import java.util.List;
 public class UserCourseServiceImpl implements UserCourseService {
     @Autowired
     private UserCourseRepository userCourseRepository;
+
+    @Autowired
+    private EnrolledCourseRepository enrolledCourseRepository;
 
     @Override
     public void addUserCourse(UserCourse userCourse) {
@@ -62,12 +66,22 @@ public class UserCourseServiceImpl implements UserCourseService {
 
     @Override
     public List<UserCourse> getAllUserCourse() {
-        return userCourseRepository.findAll();
+        List<UserCourse> userCourses = enrolledCourseRepository.findAll();
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(userCourses.toString());
+        System.out.println(userCourses.get(1).getId().getUser().getEmail().toString());
+        System.out.println("==============================================");
+        return userCourses;
     }
 
     @Override
     public List<UserCourse> getUserCourseByUserEmail(String email) {
-        return  userCourseRepository.findAllById_User_Email(email);
+        return  enrolledCourseRepository.findAllById_User_Email(email);
+    }
+
+    @Override
+    public List<UserCourse> getUserCourseByUserId(int id) {
+        return enrolledCourseRepository.findAllById_User_Id(id);
     }
 
 }

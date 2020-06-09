@@ -4,6 +4,7 @@ package com.iu.iulearn.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;

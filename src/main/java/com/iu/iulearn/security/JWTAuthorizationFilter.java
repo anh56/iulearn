@@ -33,7 +33,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
 //        super.doFilterInternal(request, response, chain);
 
-
         try{
         //get token from request header
         String tokenBearer = request.getHeader("Authorization");

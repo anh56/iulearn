@@ -9,9 +9,5 @@ package com.iu.iulearn.repository;
         import java.util.List;
 
 @Repository
-public interface UserCourseRepository extends JpaRepository<UserCourse, UserCourseId> {
-        List<UserCourse> findAllById_User_Email(String email);
-        List<UserCourse> findAllById_Course_Id(int id);
-
-
+public interface UserCourseRepository extends JpaRepository<UserCourse, Integer> {
 }
