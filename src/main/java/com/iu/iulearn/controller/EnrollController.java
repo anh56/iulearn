@@ -96,6 +96,27 @@ public class EnrollController {
         }
     }
 
+    @PostMapping("/")
+    public Object enrollCourseByUserEmailAndCourseId(@RequestParam String email, @RequestParam int course_id){
+
+        try {
+            User user = userService.getUserByEmail(email);
+
+            // add course and user to userCourse
+            Course course = courseService.getCourseById(course_id);
+            UserCourse userCourse = new UserCourse();
+            userCourse.setId(new UserCourseId(user, course));
+
+            userCourseService.addUserCourse(userCourse);
+
+            return new ResponseEntity<String>("Registration of user " + email + " for course with id: " +course_id+" is successful", HttpStatus.OK);
+
+        } catch (Exception e){
+            return new ResponseEntity<>("Registration of user " + email + " for course with id: "+course_id+" failed with exception: " + e.getMessage()
+                    ,HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @DeleteMapping("/{course_id}")
     public Object withdrawCourse(@PathVariable int course_id){
         try {
