@@ -48,13 +48,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
-//
+
 //    @Bean
 //    CorsConfigurationSource corsConfigurationSource()
 //    {
 //        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedHeaders(Arrays.asList("Content-Type", "content-type", "x-requested-with", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "x-auth-token", "x-app-id", "Origin","Accept", "X-Requested-With", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT"));
+//        configuration.setAllowedHeaders(Arrays.asList("*"));
+//        configuration.setAllowedMethods(Arrays.asList("*"));
 //        configuration.setAllowedOrigins(Arrays.asList("*"));
 //        configuration.setAllowCredentials(true);
 //        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

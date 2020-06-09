@@ -110,7 +110,6 @@ public class EnrollController {
             userCourseService.addUserCourse(userCourse);
 
             return new ResponseEntity<String>("Registration of user " + email + " for course with id: " +course_id+" is successful", HttpStatus.OK);
-
         } catch (Exception e){
             return new ResponseEntity<>("Registration of user " + email + " for course with id: "+course_id+" failed with exception: " + e.getMessage()
                     ,HttpStatus.BAD_REQUEST);
