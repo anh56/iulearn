@@ -191,6 +191,25 @@ public class UserController {
         }
     }
 
+    @PutMapping("/email")
+    public Object updateUserByEmail(@RequestParam String email, @RequestBody User user) {
+        try {
+            User userToUpdate = userService.getUserByEmail(email);
+
+            if (userToUpdate == null) return new ResponseEntity<>("No user found with email: " + email, HttpStatus.BAD_REQUEST);
+
+            user.setId(userToUpdate.getId());
+
+            userService.updateUser(user);
+            return new ResponseEntity<>("Updated user with email: " + email, HttpStatus.OK);
+
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Update user by id: " + email + "failed with exception: " + e.getMessage()
+                    , HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @DeleteMapping("/{id}")
     public Object deleteUserById(@PathVariable int id) {
         try {
