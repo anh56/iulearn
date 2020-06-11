@@ -36,8 +36,6 @@ public class UserController {
     //    @Value("${JWT_SECRET_KEY }")
     private final static String JWT_SECRET_KEY = "!*&!1nt3ll3ctu@LUn1vErs3S3cr$tKey!*&!";
 
-    private final static String token = "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";
-
 
     @Autowired
     private UserService userService;
@@ -67,7 +65,7 @@ public class UserController {
         Content content = new Content("text/plain", "Thank you for choosing our service! This email is to test our emailing service through SendGrid API!");
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid(token);
+        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
         Request request = new Request();
         request.setMethod(Method.POST);
         request.setEndpoint("mail/send");
