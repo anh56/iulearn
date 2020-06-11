@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .antMatcher("/api/**").authorizeRequests()  // requests with /api need to be checked for authorization
 //                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/api/user/login","/api/user/v2/login", "/api/user/register", "/api/category/**","/api/course/**").permitAll() //skip check for these requests
+                .antMatchers("/api/user/login","/api/user/v2/login", "/api/user/register", "/api/category/**","/api/course/**","/api/user/email").permitAll() //skip check for these requests
                 .antMatchers("/api/video/**","/api/material/**").hasAnyRole("STUDENT","ADMIN","TA") // example authenticate, only student can access url with these
                 .antMatchers("/api/course/add").hasAnyRole("ADMIN", "TA")
                 .antMatchers("/api/category/add").hasAnyRole("ADMIN", "TA")
