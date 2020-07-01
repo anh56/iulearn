@@ -34,7 +34,6 @@ import java.util.List;
 public class UserController {
 
     //    @Value("${JWT_SECRET_KEY }")
-    private final static String JWT_SECRET_KEY = "!*&!1nt3ll3ctu@LUn1vErs3S3cr$tKey!*&!";
 
 
     @Autowired
