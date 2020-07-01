@@ -4,7 +4,6 @@
 //import java.io.IOException;
 //
 //public class Example {
-//    private final static String token = "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";
 //    public static void main(String[] args) throws IOException {
 //        Email from = new Email("iulearn@hcmiu.edu.vn");
 //        String subject = "Course Registration Confirmation";
